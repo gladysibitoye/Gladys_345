@@ -1,0 +1,82 @@
+#Task: Create a working directory and R project, 
+#organize folders, then load and clean patient_info.csv by 
+#checking the structure and converting data
+#needed.
+getwd()
+#setting work directory
+setwd()
+
+#created an R project know as Data analysis
+
+
+#orginzed project folder
+#data
+#scripts
+#results
+
+
+#created folder
+dir.create("data")
+dir.create("script")
+dir.create("results")
+
+
+
+#importing the patient c
+patient_data<-read.csv(file.choose())
+View(patient_data)
+#checking for the structure of the data
+str(patient_data)
+
+#converting gender into factor
+patient_data$gender_fac<-as.factor(patient_data$gender)
+str(patient_data)
+
+#converting factor to numeric factor
+patient_data$gender_num<- ifelse(patient_data$gender_fac == "Female",1,0)
+class(patient_data$gender_num)
+
+#converting gender numeric into  factor
+patient_data$gender_num<- as.factor(patient_data$gender_num)
+class(patient_data$gender_num)
+
+
+
+#converting smoker to a factor
+patient_data$smoker_fac<-as.factor(patient_data$smoker)
+str(patient_data)
+
+#converting factor to numeric factor
+patient_data$smoker_num<-ifelse(patient_data$smoker_fac=="Yes",1,0)
+class(patient_data$smoker_num)
+
+
+#converting numeric into factor
+patient_data$smoker_num<-as.factor(patient_data$smoker_num)
+class(patient_data$smoker_num)
+
+
+
+#converting diagnosis to factor
+patient_data$diagnosis_fac<-as.factor(patient_data$diagnosis)
+str(patient_data)
+
+#converting factor to numeric
+patient_data$diagnosis_num <-ifelse(patient_data$diagnosis_fac=="Normal",1,0)
+class(patient_data$diagnosis_num)
+
+
+#converting diagnosis numeric to factor
+patient_data$diagnosis_num <-as.factor(patient_data$diagnosis_num)
+class(patient_data$diagnosis_num)
+
+
+#final checking
+str(patient_data)
+
+
+
+#saving cleaned patient_data
+write.csv(patient_data, "results/patient_data_cleaned.csv")
+cleaned_data <- read.csv("results/patient_data_cleaned.csv")
+
